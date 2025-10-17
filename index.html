@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogos Segurar Corporativa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet"  href="style.css">
+
+</head>
+<body>
+    <div class="quiz-container">
+        <div class="logo">Segurar Corporativa</div>
+        <div class="subtitle">Plataforma de Jogos Corporativos</div>
+
+        <!-- Tela de Cadastro -->
+        <div class="registration-screen active">
+            <div class="registration-header">
+                <h2>📝 Cadastro do Jogador</h2>
+                <p>Preencha seus dados para começar a jogar!</p>
+            </div>
+
+            <form id="registrationForm" class="registration-form">
+                <div class="form-group">
+                    <label for="playerName">
+                        <span class="field-icon">👤</span>
+                        Nome do Jogador
+                    </label>
+                    <input type="text" id="playerName" required placeholder="Digite seu nome completo">
+                    <div class="field-error" id="nameError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="playerEmail">
+                        <span class="field-icon">📧</span>
+                        Email Corporativo
+                    </label>
+                    <input type="email" id="playerEmail" required placeholder="seu.email@empresa.com">
+                    <div class="field-error" id="emailError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="playerState">
+                        <span class="field-icon">🗺️</span>
+                        Estado
+                    </label>
+                    <select id="playerState" required>
+                        <option value="">Selecione seu estado</option>
+                        <option value="AC">Acre</option>
+                        <option value="AL">Alagoas</option>
+                        <option value="AP">Amapá</option>
+                        <option value="AM">Amazonas</option>
+                        <option value="BA">Bahia</option>
+                        <option value="CE">Ceará</option>
+                        <option value="DF">Distrito Federal</option>
+                        <option value="ES">Espírito Santo</option>
+                        <option value="GO">Goiás</option>
+                        <option value="MA">Maranhão</option>
+                        <option value="MT">Mato Grosso</option>
+                        <option value="MS">Mato Grosso do Sul</option>
+                        <option value="MG">Minas Gerais</option>
+                        <option value="PA">Pará</option>
+                        <option value="PB">Paraíba</option>
+                        <option value="PR">Paraná</option>
+                        <option value="PE">Pernambuco</option>
+                        <option value="PI">Piauí</option>
+                        <option value="RJ">Rio de Janeiro</option>
+                        <option value="RN">Rio Grande do Norte</option>
+                        <option value="RS">Rio Grande do Sul</option>
+                        <option value="RO">Rondônia</option>
+                        <option value="RR">Roraima</option>
+                        <option value="SC">Santa Catarina</option>
+                        <option value="SP">São Paulo</option>
+                        <option value="SE">Sergipe</option>
+                        <option value="TO">Tocantins</option>
+                    </select>
+                    <div class="field-error" id="stateError"></div>
+                </div>
+
+                <button type="submit" class="registration-btn">
+                    <span class="btn-icon">🎮</span>
+                    Começar a Jogar!
+                    <span class="btn-arrow">→</span>
+                </button>
+            </form>
+        </div>
+
+        <!-- Tela de Missão, Visão e Valores -->
+        <div class="mission-vision-screen">
+            <h2>🌟 Nossa Essência</h2>
+            <p>Conheça os princípios que guiam a Segurar Corporativa</p>
+
+            <div class="mission-vision-content">
+                <div class="mv-card">
+                    <div class="mv-icon">🌟</div>
+                    <h3>Missão</h3>
+                    <p>"Proteger pessoas, patrimônios e informações empresariais por meio de soluções de segurança integradas, garantindo tranquilidade e confiança aos nossos clientes."</p>
+                </div>
+
+                <div class="mv-card">
+                    <div class="mv-icon">🚀</div>
+                    <h3>Visão</h3>
+                    <p>"Ser reconhecida nacionalmente como referência em serviços de segurança corporativa, destacando-se pela inovação tecnológica, excelência no atendimento e compromisso com a proteção."</p>
+                </div>
+
+                <div class="mv-card">
+                    <div class="mv-icon">💡</div>
+                    <h3>Valores</h3>
+                    <div class="values-list">
+                        <div class="value-item"><strong>Confiança</strong> – atuar de forma transparente e ética em todas as relações.</div>
+                        <div class="value-item"><strong>Excelência</strong> – buscar continuamente a qualidade em nossos serviços e processos.</div>
+                        <div class="value-item"><strong>Responsabilidade</strong> – respeitar normas legais, sociais e ambientais.</div>
+                        <div class="value-item"><strong>Inovação</strong> – adotar tecnologias modernas para fortalecer a segurança corporativa.</div>
+                        <div class="value-item"><strong>Valorização das Pessoas</strong> – investir no desenvolvimento e bem-estar da equipe.</div>
+                        <div class="value-item"><strong>Prevenção</strong> – priorizar ações que evitem riscos antes que se tornem problemas.</div>
+                        <div class="value-item"><strong>Comprometimento com o Cliente</strong> – entregar soluções personalizadas de acordo com as necessidades de cada empresa.</div>
+                    </div>
+                </div>
+            </div>
+
+                <div class="mission-vision-buttons">
+                    <button class="btn" onclick="goToHistory()">História da Empresa 📖</button>
+                    <button class="btn" onclick="goToSectors()">Setores da Empresa 🏢</button>
+                <button class="btn" onclick="goToApprentice()">Atividades do Jovem Aprendiz 📚</button>
+                <button class="btn" onclick="goToMenu()">Continuar para os Jogos! 🎮</button>
+                </div>
+        </div>
+
+        <!-- Menu Principal -->
+        <div class="start-screen">
+            <button class="btn back-btn" onclick="backToMissionVision()">← Voltar</button>
+            <div class="emoji">🎮</div>
+            <h2>Central de Jogos Segurar Corporativa!</h2>
+            <p>Aprenda sobre nossa empresa de forma divertida e interativa!</p>
+
+            <!-- Frase do Dia -->
+            <div class="daily-quote">
+                <div class="quote-text" id="dailyQuoteText">"O sucesso é a soma de pequenos esforços repetidos dia após dia."</div>
+                <div class="quote-author">- Robert Collier</div>
+            </div>
+
+            <!-- Estatísticas Rápidas -->
+            <div class="stats-cards">
+                <div class="stat-card">
+                    <div class="stat-number">2015</div>
+                    <div class="stat-label">Fundação</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">29</div>
+                    <div class="stat-label">Colaboradores</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">27</div>
+                    <div class="stat-label">Estados</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Jogos</div>
+                </div>
+            </div>
+
+            <!-- Sistema de Pontuação -->
+            <div class="scoring-section">
+                <div class="scoring-header">
+                    <div class="scoring-icon">🏆</div>
+                    <h3>Seu Progresso na Segurar Corporativa</h3>
+                    <p>Ganhe pontos completando jogos e desbloqueie conquistas!</p>
+                </div>
+
+                <div class="points-display">
+                    <div class="total-points">
+                        <div class="points-number" id="totalPoints">0</div>
+                        <div class="points-label">Pontos Totais</div>
+                    </div>
+                    <div class="points-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="pointsProgress" style="width: 0%"></div>
+                        </div>
+                        <div class="progress-text">Próxima conquista: <span id="nextAchievement">Primeiro Passo</span></div>
+                    </div>
+                </div>
+
+                <div class="achievements-section">
+                    <h4>🏅 Suas Conquistas</h4>
+                    <div class="achievements-list" id="achievementsList">
+                        <!-- Conquistas serão carregadas dinamicamente -->
+                    </div>
+                </div>
+
+                <div class="scoring-tips">
+                    <div class="tip-item">
+                        <span class="tip-icon">🎯</span>
+                        <span>Complete jogos para ganhar pontos</span>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">⭐</span>
+                        <span>Alcance 100 pontos para uma surpresa especial</span>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">🔥</span>
+                        <span>Jogue todos os jogos para se tornar um Mestre Completo</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Jogos Disponíveis -->
+            <h3 style="color: #667eea; margin: 30px 0 20px 0;">Escolha seu Jogo</h3>
+            <div class="game-modes">
+                <div class="mode-card" onclick="selectGame('quiz')">
+                    <div class="mode-icon">🎯</div>
+                    <div class="mode-title">Quiz Corporativo</div>
+                    <div class="mode-description">Teste seus conhecimentos com perguntas sobre a empresa</div>
+                </div>
+                <div class="mode-card" onclick="selectGame('memory')">
+                    <div class="mode-icon">🧠</div>
+                    <div class="mode-title">Jogo da Memória</div>
+                    <div class="mode-description">Encontre os pares relacionados à nossa empresa</div>
+                </div>
+                <div class="mode-card" onclick="selectGame('crossword')">
+                    <div class="mode-icon">📝</div>
+                    <div class="mode-title">Palavras Cruzadas</div>
+                    <div class="mode-description">Complete as palavras sobre valores e missão</div>
+                </div>
+
+                <div class="mode-card" onclick="selectGame('wordSearch')">
+                    <div class="mode-icon">🔍</div>
+                    <div class="mode-title">Caça-Palavras</div>
+                    <div class="mode-description">Encontre termos importantes da Segurar Corporativa</div>
+                </div>
+                <div class="mode-card" onclick="selectGame('softSkillsQuiz')">
+                    <div class="mode-icon">🤝</div>
+                    <div class="mode-title">Quiz de Soft Skills</div>
+                    <div class="mode-description">Teste suas habilidades interpessoais e comportamentais</div>
+                </div>
+
+            </div>
+
+            <!-- Dicas Gerais -->
+            <div class="tips-section">
+                <div class="tips-title">💡 Dicas dos Jogos</div>
+                <div class="tip-item">
+                    <span class="tip-icon">🎯</span>
+                    <span>Cada jogo ensina aspectos diferentes da empresa</span>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">🏆</span>
+                    <span>Complete todos os jogos para se tornar um expert</span>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">⭐</span>
+                    <span>Ganhe pontos e desbloqueie conquistas especiais</span>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">🔄</span>
+                    <span>Jogue quantas vezes quiser para melhorar sua pontuação</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tela de Seleção do Quiz -->
+        <div class="quiz-selection-screen">
+            <button class="btn back-btn" onclick="backToMenu()">← Voltar ao Menu</button>
+            <div class="emoji">🎯</div>
+            <h2>Quiz Corporativo</h2>
+            <p>Escolha o modo de jogo do quiz:</p>
+
+            <!-- Modos do Quiz -->
+            <div class="game-modes">
+                <div class="mode-card" onclick="selectGameMode('classic')">
+                    <div class="mode-icon">🎯</div>
+                    <div class="mode-title">Clássico</div>
+                    <div class="mode-description">10 perguntas variadas sobre todos os temas da empresa</div>
+                </div>
+                <div class="mode-card" onclick="selectGameMode('speed')">
+                    <div class="mode-icon">⚡</div>
+                    <div class="mode-title">Velocidade</div>
+                    <div class="mode-description">15 segundos por pergunta! Teste seus reflexos</div>
+                </div>
+                <div class="mode-card" onclick="selectGameMode('expert')">
+                    <div class="mode-icon">🧠</div>
+                    <div class="mode-title">Expert</div>
+                    <div class="mode-description">Perguntas mais desafiadoras para verdadeiros conhecedores</div>
+                </div>
+            </div>
+
+            <!-- Seletor de Dificuldade -->
+            <div class="difficulty-selector">
+                <button class="difficulty-btn active" onclick="selectDifficulty('easy')">Fácil</button>
+                <button class="difficulty-btn" onclick="selectDifficulty('medium')">Médio</button>
+                <button class="difficulty-btn" onclick="selectDifficulty('hard')">Difícil</button>
+            </div>
+
+            <button class="btn" onclick="startQuiz()" id="startQuizBtn">Iniciar Quiz Clássico</button>
+        </div>
+
+        <!-- Tela de Pergunta -->
+        <div class="question-screen">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="question-counter" id="questionCounter"></div>
+            <div class="question" id="questionText"></div>
+            <div class="options" id="optionsContainer"></div>
+            <button class="btn" id="nextBtn" onclick="nextQuestion()" disabled>Próxima Pergunta</button>
+        </div>
+
+        <!-- Tela de Resultado -->
+        <div class="result-screen">
+            <div class="emoji" id="resultEmoji"></div>
+            <div class="score-display" id="finalScore"></div>
+            <div class="score-message" id="scoreMessage"></div>
+            <div class="final-stats">
+                <div class="stat-item">
+                    <span>Perguntas Corretas:</span>
+                    <span id="correctAnswers"></span>
+                </div>
+                <div class="stat-item">
+                    <span>Perguntas Incorretas:</span>
+                    <span id="incorrectAnswers"></span>
+                </div>
+                <div class="stat-item">
+                    <span>Percentual de Acerto:</span>
+                    <span id="percentage"></span>
+                </div>
+            </div>
+            <button class="btn" onclick="backToMenu()">Voltar ao Menu</button>
+            <button class="btn" onclick="restartCurrentGame()">Jogar Novamente</button>
+        </div>
+
+        <!-- Jogo da Memória -->
+        <div class="memory-game-screen">
+            <button class="btn back-btn" onclick="backToMenu()">← Voltar ao Menu</button>
+            <div class="emoji">🧠</div>
+            <h2>Jogo da Memória</h2>
+            <p>Encontre os pares relacionados à Segurar Corporativa!</p>
+            <div class="score-display" style="font-size: 1.5rem; margin: 20px 0;">
+                Movimentos: <span id="memoryMoves">0</span> | Pares: <span id="memoryPairs">0</span>/8
+            </div>
+            <div class="memory-grid" id="memoryGrid"></div>
+            <button class="btn" onclick="resetMemoryGame()" style="margin-top: 20px;">Reiniciar Jogo</button>
+        </div>
+
+        <!-- Palavras Cruzadas -->
+        <div class="crossword-screen">
+            <button class="btn back-btn" onclick="backToMenu()">← Voltar ao Menu</button>
+            <div class="emoji">📝</div>
+            <h2>Palavras Cruzadas</h2>
+            <p>Complete as palavras sobre a Segurar Corporativa!</p>
+            <div class="crossword-grid" id="crosswordGrid"></div>
+            <div class="tips-section">
+                <div class="tips-title">Dicas:</div>
+                <div id="crosswordClues"></div>
+            </div>
+            <button class="btn" onclick="checkCrossword()">Verificar Respostas</button>
+            <button class="btn" onclick="resetCrossword()">Reiniciar</button>
+        </div>
+
+        <!-- Caça-Palavras -->
+        <div class="word-search-screen">
+            <button class="btn back-btn" onclick="backToMenu()">← Voltar ao Menu</button>
+            <div class="emoji">🔍</div>
+            <h2>Caça-Palavras</h2>
+            <p>Arraste o mouse para selecionar as palavras escondidas!</p>
+            <div class="score-display" style="font-size: 1.5rem; margin: 20px 0;">
+                Palavras Encontradas: <span id="wordsFound">0</span>/8
+            </div>
+            <div class="words-list" id="wordsList"></div>
+            <div class="word-search-grid" id="wordSearchGrid"></div>
+            <div class="tips-section">
+                <div class="tips-title">💡 Como Jogar:</div>
+                <div class="tip-item">
+                    <span class="tip-icon">🖱️</span>
+                    <span>Clique e arraste para selecionar palavras</span>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">↔️</span>
+                    <span>As palavras podem estar na horizontal, vertical ou diagonal</span>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">✅</span>
+                    <span>Palavras encontradas ficam verdes</span>
+                </div>
+            </div>
+            <button class="btn" onclick="resetWordSearch()" style="margin-top: 20px;">Novo Jogo</button>
+        </div>
+
+        <!-- Quiz de Soft Skills -->
+        <div class="soft-skills-quiz-screen">
+            <button class="btn back-btn" onclick="backToMenu()">← Voltar ao Menu</button>
+            <div class="emoji">🤝</div>
+            <h2>Quiz de Soft Skills</h2>
+            <p>Teste suas habilidades interpessoais e comportamentais!</p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="softSkillsProgressFill"></div>
+            </div>
+            <div class="question-counter" id="softSkillsQuestionCounter"></div>
+            <div class="question-category" id="softSkillsCategory"></div>
+            <div class="question" id="softSkillsQuestionText"></div>
+            <div class="options" id="softSkillsOptionsContainer"></div>
+            <button class="btn" id="softSkillsNextBtn" onclick="nextSoftSkillsQuestion()" disabled>Próxima Pergunta</button>
+        </div>
+
+        <!-- Resultado do Quiz de Soft Skills -->
+        <div class="soft-skills-result-screen">
+            <div class="emoji" id="softSkillsResultEmoji"></div>
+            <div class="score-display" id="softSkillsFinalScore"></div>
+            <div class="score-message" id="softSkillsScoreMessage"></div>
+            <div class="final-stats">
+                <div class="stat-item">
+                    <span>Respostas Corretas:</span>
+                    <span id="softSkillsCorrectAnswers"></span>
+                </div>
+                <div class="stat-item">
+                    <span>Respostas Incorretas:</span>
+                    <span id="softSkillsIncorrectAnswers"></span>
+                </div>
+                <div class="stat-item">
+                    <span>Percentual de Acerto:</span>
+                    <span id="softSkillsPercentage"></span>
+                </div>
+            </div>
+            <button class="btn" onclick="backToMenu()">Voltar ao Menu</button>
+            <button class="btn" onclick="restartSoftSkillsQuiz()">Jogar Novamente</button>
+        </div>
+
+        <!-- História da Empresa -->
+        <div class="history-screen">
+            <button class="btn back-btn" onclick="backToMissionVision()">← Voltar</button>
+            <div class="emoji">📖</div>
+            <h2>História da Segurar Corporativa</h2>
+            <p>Conheça a trajetória da nossa empresa desde sua fundação até os dias atuais.</p>
+            <div class="history-content">
+                <section>
+                    <h3>Início e Propósito</h3>
+                    <p>A Segurar Corporativa nasceu de uma visão: oferecer segurança de forma moderna, confiável e estratégica para empresas de diferentes setores.</p>
+                    <p>Tudo começou em 2015, quando Carlos Almeida, que trabalhava como gerente em uma rede de supermercados, percebeu que muitas empresas sofriam com furtos, riscos operacionais e falhas no cuidado com pessoas e patrimônios. Depois de enfrentar um grave incidente que quase comprometeu sua unidade, ele entendeu que as empresas não precisavam apenas de vigilantes, mas sim de parceiros especializados em segurança corporativa.</p>
+                </section>
+                <section>
+                    <h3>Fundação e Crescimento</h3>
+                    <p>Movido por esse propósito, Carlos fundou a Segurar Corporativa, uma empresa voltada para proteger o que é mais importante para os clientes: pessoas, informações e patrimônios. Desde o início, a Segurar uniu tecnologia de ponta, equipe treinada e estratégias de prevenção para oferecer soluções completas de monitoramento, vigilância e consultoria em riscos.</p>
+                    <p>Ao longo dos anos, a Segurar Corporativa expandiu sua atuação e conquistou credibilidade no mercado, atendendo desde escritórios e indústrias até hospitais e grandes redes de varejo. O diferencial sempre foi o mesmo: um atendimento personalizado e a confiança de que cada cliente recebe a melhor solução em segurança.</p>
+                </section>
+                <section>
+                    <h3>Reconhecimento Atual</h3>
+                    <p>Hoje, a Segurar Corporativa é reconhecida como uma parceira estratégica que não apenas protege, mas também ajuda empresas a crescerem com tranquilidade e confiança.</p>
+                </section>
+                <section>
+                    <h3>Linha do Tempo dos Marcos</h3>
+                    <div id="historyTimeline" class="history-timeline"></div>
+                </section>
+                <section>
+                    <h3>Citação do Fundador</h3>
+                    <blockquote class="founder-quote">
+                        "Nossa missão sempre foi proteger com excelência e inovar para garantir a tranquilidade dos nossos clientes." <br>— Carlos Almeida, Fundador
+                    </blockquote>
+                </section>
+            </div>
+        </div>
+
+        <!-- Setores da Empresa -->
+        <div class="sectors-screen">
+            <button class="btn back-btn" onclick="backToMissionVision()">← Voltar</button>
+            <div class="emoji">🏢</div>
+            <h2>Setores da Segurar Corporativa – Com Gestores</h2>
+            <p>Conheça os setores que fazem nossa empresa funcionar e os gestores responsáveis por cada área.</p>
+            <div class="sectors-content">
+                <div class="sector-card">
+                    <h3>🔹 Recursos Humanos (RH) e Departamento Pessoal (DP)</h3>
+                    <p><strong>Gestora Responsável:</strong> Ana Bezerra – Gerente de RH e DP</p>
+                    <p>Seleciona, treina e desenvolve colaboradores.</p>
+                    <p>Organiza folha de pagamento, benefícios e direitos trabalhistas.</p>
+                    <p>➡️ Garante que a equipe esteja preparada, valorizada e motivada.</p>
+                </div>
+
+                <div class="sector-card">
+                    <h3>🔹 Financeiro</h3>
+                    <p><strong>Gestor Responsável:</strong> Marcos Tavares – Gerente Financeiro</p>
+                    <p>Controla pagamentos, recebimentos e contratos.</p>
+                    <p>Faz orçamentos e relatórios de custos.</p>
+                    <p>➡️ Mantém a saúde financeira da empresa.</p>
+                </div>
+
+                <div class="sector-card">
+                    <h3>🔹 Jurídico</h3>
+                    <p><strong>Gestora Responsável:</strong> Renata Figueiredo – Coordenadora Jurídica</p>
+                    <p>Analisa contratos e documentos.</p>
+                    <p>Garante que a empresa atue dentro da lei.</p>
+                    <p>➡️ Protege a empresa contra riscos e problemas legais.</p>
+                </div>
+
+                <div class="sector-card">
+                    <h3>🔹 Administrativo</h3>
+                    <p><strong>Gestor Responsável:</strong> Paulo Nascimento – Gerente Administrativo</p>
+                    <p>Organiza documentos, agendas e processos internos.</p>
+                    <p>Dá suporte a todos os setores.</p>
+                    <p>➡️ Faz a empresa funcionar de forma organizada e eficiente.</p>
+                </div>
+
+                <div class="sector-card">
+                    <h3>🔹 Comercial</h3>
+                    <p><strong>Gestora Responsável:</strong> Juliana Castro – Gerente Comercial</p>
+                    <p>Apresenta os serviços da empresa e busca novos clientes.</p>
+                    <p>Mantém relacionamento com empresas parceiras.</p>
+                    <p>➡️ Garante novas oportunidades e a satisfação dos clientes.</p>
+                </div>
+            </div>
+
+            <!-- Estrutura da Empresa -->
+            <div class="structure-section">
+                <h2>👥 Estrutura da Empresa – Segurar Corporativa</h2>
+                <div class="structure-content">
+                    <div class="structure-item">
+                        <h3>1. Recursos Humanos (RH) e Departamento Pessoal (DP)</h3>
+                        <ul>
+                            <li><strong>1 Gerente</strong> (Ana Bezerra)</li>
+                            <li><strong>2 Assistentes</strong> (apoio em recrutamento, folha de pagamento, benefícios)</li>
+                            <li><strong>➡️ Total: 3 funcionários</strong></li>
+                        </ul>
+                    </div>
+
+                    <div class="structure-item">
+                        <h3>2. Financeiro</h3>
+                        <ul>
+                            <li><strong>1 Gerente</strong> (Marcos Tavares)</li>
+                            <li><strong>2 Analistas Financeiros</strong> (contas a pagar/receber, relatórios)</li>
+                            <li><strong>➡️ Total: 3 funcionários</strong></li>
+                        </ul>
+                    </div>
+
+                    <div class="structure-item">
+                        <h3>3. Jurídico</h3>
+                        <ul>
+                            <li><strong>1 Coordenadora</strong> (Renata Figueiredo)</li>
+                            <li><strong>1 Advogado Júnior</strong> (apoio em contratos e processos)</li>
+                            <li><strong>➡️ Total: 2 funcionários</strong></li>
+                        </ul>
+                    </div>
+
+                    <div class="structure-item">
+                        <h3>4. Administrativo</h3>
+                        <ul>
+                            <li><strong>1 Gerente</strong> (Paulo Nascimento)</li>
+                            <li><strong>3 Assistentes Administrativos</strong> (documentos, contratos, agendas, suporte interno)</li>
+                            <li><strong>➡️ Total: 4 funcionários</strong></li>
+                        </ul>
+                    </div>
+
+                    <div class="structure-item">
+                        <h3>5. Comercial</h3>
+                        <ul>
+                            <li><strong>1 Gerente</strong> (Juliana Castro)</li>
+                            <li><strong>2 Executivos de Contas</strong> (prospecção e relacionamento com clientes)</li>
+                            <li><strong>➡️ Total: 3 funcionários</strong></li>
+                        </ul>
+                    </div>
+
+                    <div class="structure-item">
+                        <h3>6. Operacional (Segurança em campo e monitoramento)</h3>
+                        <ul>
+                            <li><strong>1 Coordenador Operacional</strong> (supervisiona as equipes)</li>
+                            <li><strong>10 Vigilantes</strong> (postos em empresas clientes)</li>
+                            <li><strong>3 Operadores de Monitoramento</strong> (câmeras e alarmes 24h)</li>
+                            <li><strong>➡️ Total: 14 funcionários</strong></li>
+                        </ul>
+                    </div>
+
+                    <div class="structure-summary">
+                        <h3>📊 Resumo Geral</h3>
+                        <ul>
+                            <li><strong>RH/DP: 3</strong></li>
+                            <li><strong>Financeiro: 3</strong></li>
+                            <li><strong>Jurídico: 2</strong></li>
+                            <li><strong>Administrativo: 4</strong></li>
+                            <li><strong>Comercial: 3</strong></li>
+                            <li><strong>Operacional: 14</strong></li>
+                            <li><strong>🔢 Total de Funcionários: 29</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Atividades do Jovem Aprendiz -->
+        <div class="apprentice-screen">
+            <button class="btn back-btn" onclick="backToMissionVision()">← Voltar</button>
+            <div class="emoji">📚</div>
+            <h2>Atividades do Jovem Aprendiz no Administrativo</h2>
+            <p>Conheça as funções e atividades que o jovem aprendiz desenvolve na área administrativa da Segurar Corporativa.</p>
+            <div class="history-content">
+                <section>
+                    <h3>🔹 Função do Jovem Aprendiz no Administrativo</h3>
+                    <p>O jovem aprendiz atua como apoio nas rotinas administrativas e no atendimento ao público, aprendendo a lidar com documentos, informações e pessoas. Seu papel contribui para manter a empresa organizada e oferecer um atendimento cordial e eficiente a clientes e visitantes.</p>
+                </section>
+                <section>
+                    <h3>🔹 Principais Atividades que o Jovem Aprendiz desenvolve no Administrativo</h3>
+                        <div class="apprentice-activities">
+                            <div class="activity-item" onclick="showActivityExplanation('Organização de documentos', '📄', 'A organização de documentos é fundamental no setor administrativo. O jovem aprendiz aprende a arquivar documentos de forma sistemática, utilizando pastas físicas e digitais. Digitalizar documentos antigos para reduzir espaço e facilitar acesso. Classificar contratos, notas fiscais e outros papéis por data, cliente ou tipo. Esta atividade desenvolve habilidades de organização e atenção aos detalhes.')">
+                                <h4>📄 Organização de documentos</h4>
+                                <p>Arquivar, digitalizar e classificar papéis e contratos.</p>
+                            </div>
+                            <div class="activity-item" onclick="showActivityExplanation('Apoio em relatórios e planilhas', '📊', 'No apoio a relatórios e planilhas, o jovem aprendiz auxilia na coleta de dados e na criação de planilhas simples no Excel. Aprende a inserir informações básicas como nomes, datas e valores. Ajuda na elaboração de relatórios mensais sobre atividades administrativas. Desenvolve habilidades em ferramentas de escritório e precisão na entrada de dados.')">
+                                <h4>📊 Apoio em relatórios e planilhas</h4>
+                                <p>Auxiliar na elaboração de relatórios simples.</p>
+                                <p>Alimentar planilhas com informações básicas.</p>
+                            </div>
+                            <div class="activity-item" onclick="showActivityExplanation('Controle de materiais de escritório', '📎', 'O controle de materiais envolve verificar estoques de papel, canetas, cartuchos de impressora e outros suprimentos. O jovem aprendiz aprende a fazer inventários regulares e solicitar reposição quando necessário. Organiza pedidos de compra e mantém registros de entrada e saída de materiais. Esta atividade ensina planejamento e gestão de recursos.')">
+                                <h4>📎 Controle de materiais de escritório</h4>
+                                <p>Conferir e solicitar materiais quando necessário.</p>
+                            </div>
+                            <div class="activity-item" onclick="showActivityExplanation('Atendimento ao público (interno e externo)', '👥', 'No atendimento ao público, o jovem aprendiz recebe visitantes na recepção, oferecendo um atendimento cordial e eficiente. Aprende a dar informações básicas sobre a empresa e encaminhar pessoas ao setor correto. Atende ligações telefônicas, anotando recados e transferindo chamadas. Responde e-mails simples de clientes. Desenvolve comunicação interpessoal e profissionalismo.')">
+                                <h4>👥 Atendimento ao público (interno e externo)</h4>
+                                <p>Receber clientes, fornecedores e visitantes.</p>
+                                <p>Dar informações básicas e encaminhar ao setor responsável.</p>
+                                <p>Atender ligações telefônicas e responder e-mails.</p>
+                            </div>
+                            <div class="activity-item" onclick="showActivityExplanation('Suporte nas rotinas diárias', '⚙️', 'O suporte nas rotinas diárias inclui auxiliar na organização de agendas de gestores, preparar salas para reuniões e distribuir correspondências. O jovem aprendiz aprende a coordenar pequenos eventos internos e manter a organização do espaço de trabalho. Ajuda na atualização de processos administrativos e na manutenção de arquivos digitais. Esta atividade desenvolve versatilidade e capacidade de multitasking.')">
+                                <h4>⚙️ Suporte nas rotinas diárias</h4>
+                                <p>Apoiar agendas, reuniões e organização de processos administrativos.</p>
+                            </div>
+                        </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pop-up de Boas Vindas -->
+    <div id="welcomePopup" class="welcome-popup">
+        <div class="popup-content">
+            <div class="popup-emoji">🎉</div>
+            <h2>Bem-vindo!</h2>
+            <p id="welcomeMessage">Seu cadastro foi concluído com sucesso!</p>
+            <button class="btn" onclick="closeWelcomePopup()">Continuar</button>
+        </div>
+    </div>
+
+    <!-- Pop-up de Explicação de Atividade -->
+    <div id="activityPopup" class="activity-popup">
+        <div class="popup-content">
+            <div class="popup-emoji" id="activityIcon">📄</div>
+            <h2 id="activityTitle">Organização de documentos</h2>
+            <p id="activityDescription">Descrição detalhada da atividade...</p>
+            <button class="btn" onclick="closeActivityPopup()">Fechar</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

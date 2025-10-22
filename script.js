@@ -366,8 +366,9 @@ const questions = [
         ];
 
         const wordSearchWords = [
-            'SEGURAR', 'CORPORATIVA', 'SEGURO', 'CONFIANCA', 
-            'INOVACAO', 'QUALIDADE', 'TRANSPARENCIA', 'COMPROMISSO'
+            'SEGURAR', 'CORPORATIVA', 'SEGURO', 'CONFIANCA',
+            'INOVACAO', 'QUALIDADE', 'TRANSPARENCIA', 'COMPROMISSO',
+            'MISSAO', 'VALORES', 'VISAO', 'CRESCIMENTO', 'TECNOLOGIA'
         ];
 
 
@@ -879,26 +880,26 @@ const questions = [
                 ['', '', '', '', '', '', '', '', '', ''],
                 ['', 'S', 'E', 'G', 'U', 'R', 'A', 'R', '', ''],
                 ['', '', '', '', '', '', '', 'E', '', ''],
-                ['', '', 'C', 'O', 'N', 'F', 'I', 'A', 'N', 'C', 'A'],
-                ['', '', '', '', '', '', '', 'L', '', '', ''],
-                ['', '', '', '', '', '', '', '', '', '', ''],
-                ['', 'I', 'N', 'O', 'V', 'A', 'C', 'A', 'O', '', ''],
-                ['', '', '', '', 'I', '', '', '', '', '', ''],
-                ['', '', '', '', 'D', '', '', '', '', '', ''],
-                ['', '', '', '', 'A', '', '', '', '', '', '']
+                ['', '', '', '', '', '', '', 'A', '', ''],
+                ['', '', '', '', '', '', '', 'L', '', ''],
+                ['C', 'O', 'N', 'F', 'I', 'A', 'N', 'Ç', 'A', ''],
+                ['', 'I', 'N', 'O', 'V', 'A', 'Ç', 'Ã', 'O', ''],
+                ['', '', '', '', 'I', '', '', '', '', ''],
+                ['', '', '', '', 'D', '', '', '', '', ''],
+                ['', '', '', '', 'A', '', '', '', '', '']
             ],
             numbers: [
                 { row: 1, col: 1, number: 1 },
                 { row: 1, col: 7, number: 2 },
-                { row: 3, col: 2, number: 3 },
+                { row: 5, col: 0, number: 3 },
                 { row: 6, col: 1, number: 4 },
-                { row: 7, col: 4, number: 5 }
+                { row: 6, col: 4, number: 5 }
             ],
             words: [
                 { number: 1, direction: 'horizontal', answer: 'SEGURAR', clue: 'Nome da empresa de seguros' },
                 { number: 2, direction: 'vertical', answer: 'REAL', clue: 'Moeda brasileira' },
-                { number: 3, direction: 'horizontal', answer: 'CONFIANCA', clue: 'Valor fundamental baseado na credibilidade' },
-                { number: 4, direction: 'horizontal', answer: 'INOVACAO', clue: 'Busca constante por soluções modernas' },
+                { number: 3, direction: 'horizontal', answer: 'CONFIANÇA', clue: 'Valor fundamental baseado na credibilidade' },
+                { number: 4, direction: 'horizontal', answer: 'INOVAÇÃO', clue: 'Busca constante por soluções modernas' },
                 { number: 5, direction: 'vertical', answer: 'VIDA', clue: 'Tipo de seguro para proteção pessoal' }
             ]
         };
@@ -1219,53 +1220,125 @@ const questions = [
         }
 
         function generateWordSearchGrid() {
-            const grid = Array(12).fill().map(() => Array(12).fill(''));
+            const grid = Array(14).fill().map(() => Array(14).fill(''));
             wordSearchState.wordPositions = [];
-            
-            // Preencher com letras aleatórias primeiro
-            for (let i = 0; i < 12; i++) {
-                for (let j = 0; j < 12; j++) {
-                    grid[i][j] = String.fromCharCode(65 + Math.floor(Math.random() * 26));
+
+            // Definir direções possíveis (adicionadas mais direções para maior randomização)
+            const directions = [
+                { name: 'horizontal', deltaRow: 0, deltaCol: 1 },
+                { name: 'vertical', deltaRow: 1, deltaCol: 0 },
+                { name: 'diagonal-down-right', deltaRow: 1, deltaCol: 1 },
+                { name: 'diagonal-up-right', deltaRow: -1, deltaCol: 1 },
+                { name: 'diagonal-down-left', deltaRow: 1, deltaCol: -1 },
+                { name: 'diagonal-up-left', deltaRow: -1, deltaCol: -1 }
+            ];
+
+            // Palavras para colocar (embaralhadas para randomização)
+            const wordsToPlace = [
+                'SEGURAR', 'CORPORATIVA', 'SEGURO', 'CONFIANCA',
+                'INOVACAO', 'QUALIDADE', 'TRANSPARENCIA', 'COMPROMISSO',
+                'MISSAO', 'VALORES', 'VISAO', 'CRESCIMENTO', 'TECNOLOGIA'
+            ].sort(() => Math.random() - 0.5); // Embaralhar ordem das palavras
+
+            // Função para verificar se uma posição é válida para uma palavra
+            function canPlaceWord(word, startRow, startCol, direction) {
+                for (let i = 0; i < word.length; i++) {
+                    const currentRow = startRow + i * direction.deltaRow;
+                    const currentCol = startCol + i * direction.deltaCol;
+
+                    // Verificar limites do grid
+                    if (currentRow < 0 || currentRow >= 14 || currentCol < 0 || currentCol >= 14) {
+                        return false;
+                    }
+
+                    // Verificar se a célula já está ocupada por outra palavra
+                    // (permitir sobreposição apenas se for a mesma letra)
+                    const existingLetter = grid[currentRow][currentCol];
+                    if (existingLetter !== word[i] && existingLetter !== '') {
+                        // Verificar se já foi colocada por uma palavra anterior
+                        const isOccupied = wordSearchState.wordPositions.some(wordPos => {
+                            return wordPos.positions.some(pos =>
+                                pos.row === currentRow && pos.col === currentCol
+                            );
+                        });
+                        if (isOccupied) {
+                            return false;
+                        }
+                    }
+                }
+                return true;
+            }
+
+            // Tentar colocar cada palavra
+            wordsToPlace.forEach(word => {
+                let placed = false;
+                let attempts = 0;
+                const maxAttempts = 100; // Evitar loop infinito
+
+                while (!placed && attempts < maxAttempts) {
+                    // Escolher direção aleatória
+                    const direction = directions[Math.floor(Math.random() * directions.length)];
+
+                    // Escolher posição inicial aleatória
+                    const startRow = Math.floor(Math.random() * 14);
+                    const startCol = Math.floor(Math.random() * 14);
+
+                    // Verificar se a palavra pode ser colocada nesta posição
+                    if (canPlaceWord(word, startRow, startCol, direction)) {
+                        // Colocar a palavra
+                        const positions = [];
+                        for (let i = 0; i < word.length; i++) {
+                            const currentRow = startRow + i * direction.deltaRow;
+                            const currentCol = startCol + i * direction.deltaCol;
+
+                            grid[currentRow][currentCol] = word[i];
+                            positions.push({ row: currentRow, col: currentCol });
+                        }
+
+                        wordSearchState.wordPositions.push({
+                            word: word,
+                            positions: positions
+                        });
+
+                        placed = true;
+                    }
+
+                    attempts++;
+                }
+
+                // Se não conseguiu colocar após várias tentativas, colocar em posição fallback
+                if (!placed) {
+                    console.warn(`Não foi possível posicionar aleatoriamente a palavra: ${word}. Usando posição fallback.`);
+                    // Fallback: tentar colocar horizontalmente a partir de uma posição aleatória
+                    const fallbackRow = Math.floor(Math.random() * 14);
+                    const fallbackCol = Math.floor(Math.random() * (14 - word.length));
+
+                    if (fallbackCol >= 0) {
+                        const positions = [];
+                        for (let i = 0; i < word.length; i++) {
+                            const currentCol = fallbackCol + i;
+                            grid[fallbackRow][currentCol] = word[i];
+                            positions.push({ row: fallbackRow, col: currentCol });
+                        }
+
+                        wordSearchState.wordPositions.push({
+                            word: word,
+                            positions: positions
+                        });
+                    }
+                }
+            });
+
+            // Preencher células vazias com letras aleatórias para aumentar dificuldade
+            const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            for (let row = 0; row < 14; row++) {
+                for (let col = 0; col < 14; col++) {
+                    if (grid[row][col] === '') {
+                        grid[row][col] = alphabet[Math.floor(Math.random() * alphabet.length)];
+                    }
                 }
             }
-            
-            // Inserir palavras específicas em posições conhecidas
-            const wordsToPlace = [
-                { word: 'SEGURAR', row: 0, col: 0, direction: 'horizontal' },
-                { word: 'CORPORATIVA', row: 2, col: 1, direction: 'horizontal' },
-                { word: 'SEGURO', row: 1, col: 2, direction: 'vertical' },
-                { word: 'CONFIANCA', row: 4, col: 0, direction: 'horizontal' },
-                { word: 'INOVACAO', row: 6, col: 3, direction: 'horizontal' },
-                { word: 'QUALIDADE', row: 0, col: 8, direction: 'vertical' },
-                { word: 'TRANSPARENCIA', row: 8, col: 0, direction: 'horizontal' },
-                { word: 'COMPROMISSO', row: 3, col: 7, direction: 'vertical' }
-            ];
-            
-            wordsToPlace.forEach(({ word, row, col, direction }) => {
-                const positions = [];
-                
-                for (let i = 0; i < word.length; i++) {
-                    let currentRow = row;
-                    let currentCol = col;
-                    
-                    if (direction === 'horizontal') {
-                        currentCol += i;
-                    } else if (direction === 'vertical') {
-                        currentRow += i;
-                    }
-                    
-                    if (currentRow < 12 && currentCol < 12) {
-                        grid[currentRow][currentCol] = word[i];
-                        positions.push({ row: currentRow, col: currentCol });
-                    }
-                }
-                
-                wordSearchState.wordPositions.push({
-                    word: word,
-                    positions: positions
-                });
-            });
-            
+
             return grid;
         }
 
@@ -1389,10 +1462,10 @@ const questions = [
             const cells = [];
             const rowDiff = end.row - start.row;
             const colDiff = end.col - start.col;
-            
+
             // Determinar direção (horizontal, vertical ou diagonal)
             let stepRow = 0, stepCol = 0;
-            
+
             if (rowDiff === 0) {
                 // Horizontal
                 stepCol = colDiff > 0 ? 1 : -1;
@@ -1407,22 +1480,22 @@ const questions = [
                 // Linha não válida, retornar apenas célula inicial
                 return [start];
             }
-            
+
             let currentRow = start.row;
             let currentCol = start.col;
-            
+
             while (true) {
                 cells.push({ row: currentRow, col: currentCol });
-                
+
                 if (currentRow === end.row && currentCol === end.col) break;
-                
+
                 currentRow += stepRow;
                 currentCol += stepCol;
-                
-                // Verificar limites
-                if (currentRow < 0 || currentRow >= 12 || currentCol < 0 || currentCol >= 12) break;
+
+                // Verificar limites (grid 14x14)
+                if (currentRow < 0 || currentRow >= 14 || currentCol < 0 || currentCol >= 14) break;
             }
-            
+
             return cells;
         }
 
@@ -1703,7 +1776,35 @@ const questions = [
                 questions: [...softSkillsQuestions].sort(() => Math.random() - 0.5)
             };
 
+            // Embaralhar opções de cada pergunta para evitar padrão fixo
+            softSkillsState.questions.forEach(question => {
+                shuffleQuestionOptions(question);
+            });
+
             showSoftSkillsQuestion();
+        }
+
+        // Função para embaralhar opções e ajustar índice correto
+        function shuffleQuestionOptions(question) {
+            const originalCorrectIndex = question.correct;
+            const originalOptions = [...question.options];
+
+            // Criar array de índices e embaralhar
+            const indices = [0, 1, 2, 3];
+            for (let i = indices.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [indices[i], indices[j]] = [indices[j], indices[i]];
+            }
+
+            // Reordenar opções baseado nos índices embaralhados
+            const shuffledOptions = indices.map(index => originalOptions[index]);
+
+            // Encontrar novo índice da resposta correta
+            const newCorrectIndex = indices.indexOf(originalCorrectIndex);
+
+            // Atualizar pergunta com opções embaralhadas e novo índice correto
+            question.options = shuffledOptions;
+            question.correct = newCorrectIndex;
         }
 
         function showSoftSkillsQuestion() {

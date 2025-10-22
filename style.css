@@ -372,9 +372,40 @@ body {
         }
 
         .word-search-cell.found {
-            background: #4caf50;
+            background: rgba(76, 175, 80, 0.7);
             color: white;
             border-color: #388e3c;
+            animation: wordHighlight 0.6s ease-out;
+            box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+            transform: scale(1.05);
+            position: relative;
+        }
+
+        .word-search-cell.found::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.8), rgba(139, 195, 74, 0.8));
+            border-radius: 4px;
+            z-index: -1;
+        }
+
+        @keyframes wordHighlight {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 2px 8px rgba(76, 175, 80, 0.2);
+            }
+            50% {
+                transform: scale(1.08);
+                box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+            }
+            100% {
+                transform: scale(1.05);
+                box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+            }
         }
 
         .word-search-cell.found.selected {
